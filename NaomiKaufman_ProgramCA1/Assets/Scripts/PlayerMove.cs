@@ -21,6 +21,17 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Movement Bools")]
     public bool jumpInput;
+    public bool isJumping;
+    public bool isGrounded;
+
+    [Header("Jumping Variables")]
+    public float jumpHeight = 3;
+    public float gravity = -15;
+    public float inAir;
+    public float fallingSpeed;
+    public float leapingSpeed;
+    public float rayCastHeightOffset = 0;
+    public LayerMask groundLayer;
 
     private void OnEnable()
     {
@@ -49,7 +60,13 @@ public class PlayerMove : MonoBehaviour
 
     public void Movement()
     {
-        moveDirection = cameraObject.forward * verticleInput;
+         if (isJumping)
+        {
+            return;
+        } 
+
+
+            moveDirection = cameraObject.forward * verticleInput;
         moveDirection = moveDirection + cameraObject.right * horizontalInput;
         moveDirection.Normalize();
         moveDirection.y = 0;
@@ -57,10 +74,6 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 movementVelocity = moveDirection;
         playerRigidbody.velocity = movementVelocity;
-    }
-
-    public void Jumping()
-    { 
     }
 
     private void MovementInput ()
@@ -71,6 +84,13 @@ public class PlayerMove : MonoBehaviour
 
     private void Rotation()
     {
+
+         if (isJumping)
+        { 
+            return; 
+        } 
+            
+
         Vector3 targetDirection = Vector3.zero;
        
         targetDirection = cameraObject.forward * verticleInput;
@@ -95,20 +115,64 @@ public class PlayerMove : MonoBehaviour
         if(jumpInput)
         {
             jumpInput = false;
+            HandleJumping();
 
         }
+        
     }
+
+    public void Falling()
+    {
+        RaycastHit hit;
+        Vector3 rayCastOrigin = transform.position;
+        rayCastOrigin.y = rayCastOrigin.y + rayCastHeightOffset;
+
+        if(!isGrounded && !isJumping)
+        {
+            inAir = inAir + Time.deltaTime;
+            playerRigidbody.AddForce(transform.forward * leapingSpeed);
+            playerRigidbody.AddForce(Vector3.down * fallingSpeed * inAir);
+        }
+        if (Physics.SphereCast(rayCastOrigin, 0.2f, Vector3.down, out hit, 0.2f, groundLayer))
+        {
+            inAir = 0;
+            isGrounded = true;
+            isJumping = false;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    }
+       
 
     public void HandleMovements()
     {
+       
         Movement();
         MovementInput();
         Rotation();
+        JumpingInput();
+
     }
     public void HandleInputs()
     {
         MovementInput();
-        JumpingInput();
+        Falling();
+    }
+
+    public void HandleJumping()
+    {
+        if (isGrounded)
+        {
+            isJumping = true;
+            float jumpingVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
+            Vector3 playerVelocity = moveDirection;
+            playerVelocity.y = jumpingVelocity;
+            playerRigidbody.velocity = playerVelocity;
+
+        }
+
     }
 
 }

@@ -5,19 +5,20 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
 
-    PlayerMove newPlayerMove;
+    PlayerMove PlayerMove;
 
     public void Awake()
     {
-        newPlayerMove = GetComponent<PlayerMove>();
+        PlayerMove = GetComponent<PlayerMove>();
     }
 
     private void Update()
     {
-        newPlayerMove.HandleInputs();
+        PlayerMove.HandleInputs();
     }
+
     private void FixedUpdate()
     {
-        newPlayerMove.HandleMovements();
+        PlayerMove.HandleMovements();
     }
 }
