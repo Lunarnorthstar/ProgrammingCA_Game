@@ -146,7 +146,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""3b35fe79-4398-49ef-8120-c3dd697d3389"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

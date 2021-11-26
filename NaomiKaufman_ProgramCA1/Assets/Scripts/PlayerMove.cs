@@ -128,8 +128,22 @@ public class PlayerMove : MonoBehaviour
             isJumping = true;
             float jumpingVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
             Vector3 playerVelocity = moveDirection;
+            moveDirection.Normalize();
             playerVelocity.y = jumpingVelocity;
             playerRigidbody.velocity = playerVelocity;
+
+        }
+        if (!isGrounded)
+        {
+            moveDirection = cameraObject.forward * verticleInput;
+            moveDirection = moveDirection + cameraObject.right * horizontalInput;
+            moveDirection.Normalize();
+            moveDirection.y = 0;
+            moveDirection = moveDirection * movementSpeed;
+
+            Vector3 movementVelocity = moveDirection;
+            playerRigidbody.velocity = movementVelocity;
+
 
         }
 
