@@ -14,11 +14,12 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        PlayerMove.HandleInputs();
+        PlayerMove.HandleFalling();
     }
 
     private void FixedUpdate()
     {
         PlayerMove.HandleMovements();
+        PlayerMove.HandleJumping();
     }
 }

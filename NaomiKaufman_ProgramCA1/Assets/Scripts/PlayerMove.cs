@@ -115,10 +115,24 @@ public class PlayerMove : MonoBehaviour
         if(jumpInput)
         {
             jumpInput = false;
-            HandleJumping();
+            Jumping();
 
         }
         
+    }
+
+    public void Jumping()
+    {
+        if (isGrounded)
+        {
+            isJumping = true;
+            float jumpingVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
+            Vector3 playerVelocity = moveDirection;
+            playerVelocity.y = jumpingVelocity;
+            playerRigidbody.velocity = playerVelocity;
+
+        }
+
     }
 
     public void Falling()
@@ -147,32 +161,19 @@ public class PlayerMove : MonoBehaviour
        
 
     public void HandleMovements()
-    {
-       
+    {  
         Movement();
         MovementInput();
         Rotation();
-        JumpingInput();
-
     }
-    public void HandleInputs()
+    public void HandleFalling()
     {
-        MovementInput();
         Falling();
     }
-
     public void HandleJumping()
     {
-        if (isGrounded)
-        {
-            isJumping = true;
-            float jumpingVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
-            Vector3 playerVelocity = moveDirection;
-            playerVelocity.y = jumpingVelocity;
-            playerRigidbody.velocity = playerVelocity;
-
-        }
-
+        JumpingInput();
     }
+
 
 }
