@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class CheckpointCollider : MonoBehaviour 
 {
+    static public Vector3 newPos;
 
-    PlayerCheckpointSet PlayerCheck;
-    public float X, Y, Z;
-
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.CompareTag("Player")) 
         {
-            X = GameObject.Find("Player").transform.position.x; 
-            Y = GameObject.Find("Player").transform.position.y; 
-            Y = GameObject.Find("Player").transform.position.z;
+           newPos = GameObject.Find("Player").transform.position;
 
-            PlayerCheck.CPSet(X, Y, Z);
-            
+            other.SendMessage("CPSet");
         }
     }
 }

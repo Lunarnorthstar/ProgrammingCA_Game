@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class PlayerCheckpointSet : MonoBehaviour 
 {
-    float CPX = 0; 
-    float CPY = 0; 
-    float CPZ = 0; 
-    
+    Vector3 playerPos;
 
-    public void CPSet(float checkX, float checkY, float checkZ) 
+    public void Start()
     {
-        CPX = checkX;
-        CPY = checkY;
-        CPY = checkZ;
+        playerPos = GameObject.Find("Player").transform.position;
+    }
+    public void CPSet() 
+    {
+        playerPos = CheckpointCollider.newPos;
     }
   
     public void gotoCP() 
     {
-        transform.position = new Vector3(CPX, CPY, CPZ); 
+        transform.position = playerPos; 
     }
 }

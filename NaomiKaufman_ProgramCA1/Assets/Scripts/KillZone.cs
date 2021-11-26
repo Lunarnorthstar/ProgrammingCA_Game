@@ -19,6 +19,7 @@ public class KillZone : MonoBehaviour
             {
                 
                 other.SendMessage("gotoCP");
+                other.SendMessage("DealDamage");
             }
 
             if (other.gameObject.CompareTag("PushObject")) 
