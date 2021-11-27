@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 350181237937430555}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 350181238541168984}
   - component: {fileID: 350181238541168985}
   - component: {fileID: 350181238541168990}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 350181238825071645}
   - component: {fileID: 350181238825071634}
   - component: {fileID: 350181238825071635}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 350181239176199100}
   - component: {fileID: 350181239176199101}
   - component: {fileID: 350181239176199090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,8 @@ GameObject:
   - component: {fileID: 350181239410573453}
   - component: {fileID: 350181239410573452}
   - component: {fileID: 350181239410573455}
-  m_Layer: 0
+  - component: {fileID: 344306898}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -439,6 +440,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61508dd77be675b498109a367cf8c7ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &344306898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350181239410573441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0749aed685cbe41ae5f5ecccf2cc10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 4
+  maxHealth: 4
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  emptyHeart: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &350181239486006551
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +479,7 @@ GameObject:
   - component: {fileID: 350181239486006547}
   - component: {fileID: 350181239486006544}
   - component: {fileID: 350181239486006545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
