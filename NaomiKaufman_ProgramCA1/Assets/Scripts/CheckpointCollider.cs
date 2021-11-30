@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class CheckpointCollider : MonoBehaviour 
 {
-    static public Vector3 newPos;
-    public GameObject onParticles;
-    bool isActivated;
+    //Variables
+    static public Vector3 newPos; //Position to go to
+    public GameObject onParticles; //The particles to turn on when activated
 
 
-    private void OnTriggerEnter(Collider other) 
-    {
+    private void OnTriggerEnter(Collider other) //When you enter the trigger
+    {   
         
-        
-        if (other.gameObject.CompareTag("Player")) 
+        if (other.gameObject.CompareTag("Player")) //Check if they are the player (By tag)
         {
-           newPos = GameObject.Find("Player").transform.position;
+           newPos = GameObject.Find("Player").transform.position; //Get the player's Position and make it the new return position
 
-            other.SendMessage("CPSet");
-            isActivated = true;
+            other.SendMessage("CPSet"); //Set the CheckPoint
+            onParticles.SetActive(true); //Turn on Particles to show its on
+            
         }
 
-        if (isActivated)
-        {
-            onParticles.SetActive(true);
-        }
     }
 
 }

@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    //VARIABLES
+    //Variables (There are a lot so i'll abbreviate)
+
+    //the objects needed such as controller and rigidbody
     PlayerController playercontrols;
     Vector3 moveDirection;
     Transform cameraObject;
     Rigidbody playerRigidbody;
 
+    //Variables that concern movement
     [Header("Movement Variables")]
     public Vector2 movementInput;
     public float verticleInput;
     public float horizontalInput;
 
+    //Variables that concern move speed
     [Header("Movement Speeds")]
     public float movementSpeed = 7;
     public float rotationSpeed = 15;

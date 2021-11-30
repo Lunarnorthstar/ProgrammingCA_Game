@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class ObjectCheckpointSet : MonoBehaviour
 {
-
-    Vector3 StartPos;
+    //Variable
+    Vector3 StartPos; //hold objects starting position
 
     public void Start()
     {
-         StartPos = GetComponent<Transform>().position;
+         StartPos = GetComponent<Transform>().position; //Get the objects starting position
     }
 
     public void gotoPos()
     {
-        transform.position = StartPos;
+        transform.position = StartPos; //Return the object to where it started
     }
 }

@@ -5,31 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class KillZone : MonoBehaviour 
 {
+    //Variables
+    private bool active = true; //Is this particular killzone active
+    public bool permanent = false; //Is it permanent
 
-    PlayerCheckpointSet PlayerCheck;
-
-    private bool active = true; 
-    public bool permanent = false;
-
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other) //When you enter the trigger
     {
-        if (active || permanent) 
+        if (active) //If it is on
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (other.gameObject.CompareTag("Player")) //Check if player
             {
                 
-                other.SendMessage("gotoCP");
-                other.SendMessage("DealDamage");
+                other.SendMessage("gotoCP"); //If it is return him to his last checkpoint
+                other.SendMessage("DealDamage"); //If it is deal a damage
             }
 
-            if (other.gameObject.CompareTag("PushObject")) 
+            if (other.gameObject.CompareTag("PushObject")) //If it is a pushable object 
             {
-                if (!permanent) 
+                if (!permanent) //if the killzone is NOT permanent and can be destroyed 
                 {
-                    gameObject.SetActive(false); 
+                    gameObject.SetActive(false); //Turn off the killzone
                 }
 
-                other.SendMessage("gotoPos");
+                other.SendMessage("gotoPos"); //Return the object to where it started
 
             }
 

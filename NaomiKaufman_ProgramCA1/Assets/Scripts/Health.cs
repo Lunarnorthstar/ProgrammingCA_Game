@@ -5,58 +5,59 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    //Variables
     [Header("Health Values")]
-    public int health;
-    public int maxHealth;
+    public int health; //Current health
+    public int maxHealth; //Max health
 
     [Header("Image Variables")]
-    public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    public Image[] hearts; //Array of heart images
+    public Sprite fullHeart; //image when full
+    public Sprite emptyHeart; //Image when empty
 
-    void Update()
+    void Update() //EVery frame
     {
-        if(health <= 0)
+        if(health <= 0) //If health is less than or equal to 0 (none)
         {
-            Respawn();
+            Respawn(); //Respawen the player
         }
-        if(health > maxHealth)
+        if(health > maxHealth) //If health somehow is pushed over the max
         {
-            health = maxHealth;
+            health = maxHealth; //Set it to the max
         }
 
-        for(int i = 0; i < hearts.Length; i++)
+        for(int i = 0; i < hearts.Length; i++) //For the length of the array
         {
-            if(i < health)
+            if(i < health) //if array slot less than current health
             {
-                hearts[i].sprite = fullHeart;
+                hearts[i].sprite = fullHeart; //make a fullheart sprite in the array
             }
-            else
+            else //if it isnt
             {
-                hearts[i].sprite = emptyHeart;
+                hearts[i].sprite = emptyHeart; //Make an empty heart in the array
             }
 
-            if(i < maxHealth)
+            if(i < maxHealth) //If the array slot is less than max
             {
-                hearts[i].enabled = true;
+                hearts[i].enabled = true; //keep enabling hearts
             }
-            else
+            else //if it isnt
             {
-                hearts[i].enabled = false;
+                hearts[i].enabled = false; //dont enable any more hearts
             }
 
         }
     }
 
-    public void DealDamage()
+    public void DealDamage() //Deals damage
     {
-        health--;
+        health--; //Lower health by 1
     }
 
-    public void Respawn()
+    public void Respawn() //Respawns player
     {
-        SendMessage("gotoCP");
-        health = maxHealth;
+        SendMessage("gotoCP"); //return to Checkpoint
+        health = maxHealth; //make the health max again
 
     }
 }

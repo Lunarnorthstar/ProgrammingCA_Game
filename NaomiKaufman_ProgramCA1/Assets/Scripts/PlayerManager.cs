@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    //Variable
+    PlayerMove PlayerMove; //PlayerMove script
 
-    PlayerMove PlayerMove;
-
-    public void Awake()
+    public void Awake() //When the script instance is loaded
     {
-        PlayerMove = GetComponent<PlayerMove>();
+        PlayerMove = GetComponent<PlayerMove>(); //Get playermove
     }
 
-    private void Update()
+    private void Update() //Every Frame
     {
-        PlayerMove.HandleFalling();
+        PlayerMove.HandleFalling(); //Call the falling classes
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() //Every fixed framerate frame
     {
+        //Call the classes that require input (Move and Jump)
         PlayerMove.HandleMovements();
         PlayerMove.HandleJumping();
     }
