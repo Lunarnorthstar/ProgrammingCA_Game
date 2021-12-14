@@ -39,6 +39,7 @@ public class PlayerMove : MonoBehaviour
     public float rayCastHeightOffset = 0;
     public LayerMask groundLayer;
 
+
     private void OnEnable() //when the object is active
     {
         if (playercontrols == null) //if the controls are null
@@ -187,7 +188,6 @@ public class PlayerMove : MonoBehaviour
             isGrounded = false;
         }
     }
-       
 
     public void HandleMovements() //just a group that lets you call all the move stuff at once
     {  
@@ -203,6 +203,5 @@ public class PlayerMove : MonoBehaviour
     {
         JumpingInput();
     }
-
 
 }
