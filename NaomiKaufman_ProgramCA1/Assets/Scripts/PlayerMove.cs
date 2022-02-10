@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     Transform cameraObject;
     Rigidbody playerRigidbody;
 
+    Animator animator;
+
     //Variables that concern movement
     [Header("Movement Variables")]
     public Vector2 movementInput;
@@ -64,7 +66,12 @@ public class PlayerMove : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>(); //get the rigidbody
         cameraObject = Camera.main.transform; //get the camera
     }
-    
+
+    public void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
 
     public void Movement() //this concerns just the movement
     {
@@ -82,6 +89,8 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 movementVelocity = moveDirection;
         playerRigidbody.velocity = movementVelocity;
+
+        animator.SetFloat("vAxisInput", Mathf.Abs(verticleInput + horizontalInput));
     }
 
     private void MovementInput () //this is JUST the inputs, not the actual movement 
@@ -123,6 +132,7 @@ public class PlayerMove : MonoBehaviour
         if(jumpInput) //if the player presses the jump button
         {
             jumpInput = false; //reset the input to false
+          
             Jumping(); //and call the action 
 
         }
@@ -145,6 +155,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (!isGrounded) //if you ARENT on the ground
         {
+
             //return movement control to the player in case they want to control their jump
             moveDirection = cameraObject.forward * verticleInput;
             moveDirection = moveDirection + cameraObject.right * horizontalInput;
@@ -152,7 +163,7 @@ public class PlayerMove : MonoBehaviour
             moveDirection.y = 0;
             moveDirection = moveDirection * movementSpeed;
 
-            Vector3 movementVelocity = moveDirection;
+           Vector3 movementVelocity = moveDirection;
             playerRigidbody.velocity = movementVelocity;
 
 
@@ -167,6 +178,9 @@ public class PlayerMove : MonoBehaviour
         RaycastHit hit;
         Vector3 rayCastOrigin = transform.position;
         rayCastOrigin.y = rayCastOrigin.y + rayCastHeightOffset;
+
+        animator.SetBool("Jumping", isJumping);
+        animator.SetBool("OnGround", isGrounded);
 
         if(!isGrounded && !isJumping) //if you are NOT grounded OR jumping 
         {

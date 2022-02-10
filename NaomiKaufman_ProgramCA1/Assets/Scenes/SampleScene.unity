@@ -500,6 +500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6568417854710296668, guid: eae782f701938d44a91e1e417622f443, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6568417854710296669, guid: eae782f701938d44a91e1e417622f443, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -12317,6 +12321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6568417854710296668, guid: eae782f701938d44a91e1e417622f443, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6568417854710296669, guid: eae782f701938d44a91e1e417622f443, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -12430,6 +12438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 350181239410573441, guid: abc36e77df4396341a27e724cb547745, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 350181239410573442, guid: abc36e77df4396341a27e724cb547745, type: 3}
       propertyPath: gravity
       value: -10
@@ -12462,6 +12474,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 5cba6ca8bba879a46924537e7098e0f0, type: 2}
+    - target: {fileID: 6462672685523819975, guid: abc36e77df4396341a27e724cb547745, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abc36e77df4396341a27e724cb547745, type: 3}
 --- !u!1001 &2457799641038397121
@@ -12584,6 +12600,10 @@ PrefabInstance:
       propertyPath: speed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6568417854710296668, guid: eae782f701938d44a91e1e417622f443, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6568417854710296669, guid: eae782f701938d44a91e1e417622f443, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -12825,11 +12845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5861156479064171692, guid: 5c888b4ffe7f982468581cc2b1588126, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016953926
+      value: 0.000000016953926
       objectReference: {fileID: 0}
     - target: {fileID: 5861156479064171692, guid: 5c888b4ffe7f982468581cc2b1588126, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000029366534
+      value: -0.0000000029366534
       objectReference: {fileID: 0}
     - target: {fileID: 5861156480732399131, guid: 5c888b4ffe7f982468581cc2b1588126, type: 3}
       propertyPath: m_LocalRotation.y
@@ -12906,6 +12926,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6568417854710296668, guid: eae782f701938d44a91e1e417622f443, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 6568417854710296668, guid: eae782f701938d44a91e1e417622f443, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
@@ -12965,6 +12989,10 @@ PrefabInstance:
     - target: {fileID: 3728666909534010480, guid: 99928061b33c05b4895c876e0b077418, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3916731081509528807, guid: 99928061b33c05b4895c876e0b077418, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -59
       objectReference: {fileID: 0}
     - target: {fileID: 4662100174878019714, guid: 99928061b33c05b4895c876e0b077418, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
