@@ -378,13 +378,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e88e93982c4d340bb46202e88f91e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementInput: {x: 0, y: 0}
-  verticleInput: 0
-  horizontalInput: 0
-  rotationSpeed: 1
   BlastPower: 5
   Projectile: {fileID: 0}
   ShotPoint: {fileID: 0}
+  aim:
+    m_Name: Aim
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 24a62648-2a8a-4518-86e1-7183f46275ca
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
 --- !u!114 &8500530042273537470
 MonoBehaviour:
   m_ObjectHideFlags: 0

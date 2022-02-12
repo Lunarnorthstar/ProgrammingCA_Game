@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3178b7e83ef7f60479c27ab5b356781c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtTimer: 1
 --- !u!1 &6568417854700504591
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e12eec756392d140aa2284aefa47a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 0
+  speed: 0
   triggeredScale: 1
   triggeredSpeed: 5
 --- !u!65 &6568417854700504587

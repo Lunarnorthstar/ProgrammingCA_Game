@@ -76,7 +76,9 @@ public class SlingshotController : MonoBehaviour
             GameObject CreatedProjectile = Instantiate(Projectile, ShotPoint.position, ShotPoint.rotation);
             CreatedProjectile.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
             BlastPower = 5;
-            
+            GetComponentInParent<Animator>().SetLayerWeight(1, 0);
+            GetComponentInParent<Animator>().SetBool("Shooting", false);
+
         }
 
         if(Mouse.current.rightButton.isPressed)
@@ -94,6 +96,9 @@ public class SlingshotController : MonoBehaviour
         }
 
         aiming = false;
+        
+        GetComponentInParent<Animator>().SetLayerWeight(1, 1);
+        GetComponentInParent<Animator>().SetBool("Shooting", true);
     }
 
 }

@@ -15,6 +15,14 @@ public class Health : MonoBehaviour
     public Sprite fullHeart; //image when full
     public Sprite emptyHeart; //Image when empty
 
+    public float hurtTimer = 1;
+    float hurtCooldown;
+
+    private void Start()
+    {
+        hurtCooldown = 0;
+    }
+
     void Update() //EVery frame
     {
         if(health <= 0) //If health is less than or equal to 0 (none)
@@ -47,11 +55,21 @@ public class Health : MonoBehaviour
             }
 
         }
+
+        
+        hurtCooldown -= Time.deltaTime;
     }
 
     public void DealDamage() //Deals damage
     {
-        health--; //Lower health by 1
+        if (hurtCooldown <= 0)
+        {
+            health--; //Lower health by 1
+
+            GetComponentInChildren<Animator>().SetTrigger("Hurt");
+            hurtCooldown = hurtTimer;
+        }
+
     }
 
     public void Respawn() //Respawns player

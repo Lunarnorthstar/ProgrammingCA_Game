@@ -90,7 +90,8 @@ public class PlayerMove : MonoBehaviour
         Vector3 movementVelocity = moveDirection;
         playerRigidbody.velocity = movementVelocity;
 
-        animator.SetFloat("vAxisInput", Mathf.Abs(verticleInput + horizontalInput));
+        animator.SetFloat("vAxisInput", Mathf.Abs(verticleInput) + Mathf.Abs(horizontalInput));
+        animator.SetFloat("hAxisInput", (horizontalInput));
     }
 
     private void MovementInput () //this is JUST the inputs, not the actual movement 
