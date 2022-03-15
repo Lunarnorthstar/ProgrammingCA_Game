@@ -132,7 +132,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 3, z: 5}
+  m_Size: {x: 7, y: 3, z: 7}
   m_Center: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &6568417854710296668
 GameObject:
@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 6568417854710296666}
   - component: {fileID: 8903560097490049899}
   - component: {fileID: 1677107672751528777}
+  - component: {fileID: -6683738988643685789}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -211,6 +212,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b668402bbf09a4895572674a606bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSeen: 0
+  isHeard: 0
+  isNear: 0
+  hearLength: 10
+  distLength: 10
+  targetObject: {fileID: 0}
+  waypoints: []
+  fieldOfViewAngle: 360
 --- !u!195 &1677107672751528777
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -233,3 +242,15 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-6683738988643685789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6568417854710296668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dfcfae4659d76d4ba54afa89e97d960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

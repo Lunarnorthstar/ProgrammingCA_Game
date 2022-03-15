@@ -8,11 +8,12 @@ public class EnemyAI : MonoBehaviour
     NavMeshAgent navAgent;
     Vector3 destination;
 
-    public bool isVisible;
-    public bool isAudible;
-    public bool isClose;
+	[Header("Checks")]
+	public bool isSeen;
+    public bool isHeard;
+    public bool isNear;
 
-
+	[Header ("Distances")]
 	//public float seeLength = 10;
 	public float hearLength = 10;
 	public float distLength = 10;
@@ -23,7 +24,8 @@ public class EnemyAI : MonoBehaviour
     Vector2 groundDeltaPosition;
     Vector2 velocity = Vector2.zero;
 
-    int nextIndex;
+	[Header("Waypoints")]
+	int nextIndex;
     public GameObject[] waypoints;
 
     public float fieldOfViewAngle = 360.0f;
@@ -36,13 +38,11 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
 		startPos = transform.position;
-		navAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        //navAgent.updatePosition = false;
-		destination = NextWaypoint(Vector3.zero);
-		//navAgent.destination =NextWaypoint(Vector3.zero);
-        col = GetComponent<BoxCollider>();
 
+		navAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+		destination = NextWaypoint(Vector3.zero);
 		
+        col = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -50,36 +50,36 @@ public class EnemyAI : MonoBehaviour
     {
         if (targetObject)
         {
+			// Check is the Player is Visible
+			isPlayerSeen();
+			// Check is the Player is Audible
+			isPlayerHeard();
             // Check is the Player is Visible
-            isPlayerVisible();
-            // Check is the Player is Audible
-            isPlayerAudible();
-            // Check is the Player is Visible
-            isPlayerClose();
+            isPlayerNear();
 
 
             // Check for visibility and proximity
-            if (isVisible && isClose)
+            if (isSeen && isNear)
             {
                 // If Randomball is visible and is close, then SEEK
                 seekFunction();
             }
-            else if (isVisible && !isClose)
+            else if (isSeen && !isNear)
             {
                 // If Randomball is visible and not close, then PATROL
                 patrolFunction();
             }
-            else if (!isVisible && !isAudible)
+            else if (!isSeen && !isHeard)
             {
 				// If Randomball is not visible and not audable, then PATROL
 				IdleFunction();
 			}
-            else if (!isVisible && isAudible)
+            else if (!isSeen && isHeard)
             {
                 // If Randomball is visible and not close, then PATROL
                 patrolFunction();
             }
-			else if (isAudible && isClose)
+			else if (isHeard && isNear)
             {
 				patrolFunction();
             }
@@ -87,7 +87,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-			// If RandomBall has been destroyed then Idle
+			// If Player has been destroyed then Idle
 			IdleFunction();
 		}
 
@@ -100,29 +100,25 @@ public class EnemyAI : MonoBehaviour
 
         velocity = (Time.deltaTime > 1e-5f) ? groundDeltaPosition / Time.deltaTime : velocity = Vector2.zero;
 
-		//bool shouldMove = velocity.magnitude > 0.025f && navAgent.remainingDistance > navAgent.radius;
-
-	
     }
 
 	void OnCollisionEnter(Collision col)
 	{
 		if (col.gameObject.name == "Player")
 		{
-			// WHATEVER HAPPENS WHEN ENEMY TOUCHES
+			//FOR WHATEVER HAPPENS WHEN ENEMY TOUCHES
 
 		}
 	}
-	// Seek out RandomBall
+	// Seek out Player
 	void seekFunction()
 	{
-		// Seek out the Enemy
+		// Seek out the Player
 		destination = targetObject.position;
 	}
-	// Patrol Array of cubes (added to script)
+	// Patrol Array 
 	void patrolFunction()
 	{
-		Debug.Log("PATROLING");
 		// If within 2.5, then move onto next waypoint in array
 		if (Vector3.Distance(transform.position, destination) < 2.5)
 		{
@@ -132,26 +128,27 @@ public class EnemyAI : MonoBehaviour
 	// Idle at start
 	void IdleFunction()
 	{
-		// Idle at 0
 		destination = startPos;
 	}
 
 	// Function that loops through waypoints for the Patrol fucntionality
 	public Vector3 NextWaypoint(Vector3 currentPosition)
 	{
-		Debug.Log(currentPosition);
-		if (currentPosition != Vector3.zero)
+		//Debug.Log(currentPosition);
+		if (currentPosition != startPos)
 		{
 			// Find array index of given waypoint
 			for (int i = 0; i < waypoints.Length; i++)
 			{
+				
 				// Once found calculate next one
 				if (currentPosition == waypoints[i].transform.position)
 				{
 					// Modulus operator helps to avoid to go out of bounds
 					// And resets to 0 the index count once we reach the end of the array
-					nextIndex = (i + 1) % waypoints.Length;
+					nextIndex = Random.Range(0, waypoints.Length);
 				}
+				Debug.Log(nextIndex);
 			}
 		}
 		else
@@ -163,7 +160,7 @@ public class EnemyAI : MonoBehaviour
 	}
 
 	// Checks if Player is visible using Raycast
-	public void isPlayerVisible()
+	public void isPlayerSeen()
 	{
 
 		// Create a vector from the enemy to the player and store the angle between it and forward.
@@ -178,41 +175,31 @@ public class EnemyAI : MonoBehaviour
 		// If the angle between forward and where the player is, is less than half the angle of view...
 		if (!navAgent.Raycast(targetObject.transform.position, out hit) && angle < fieldOfViewAngle * 0.5f)
 		{
-			// ... the player is Visible
-			Debug.Log("Player is VISIBLE");
-			isVisible = true;
-
+			isSeen = true;
 		}
 		else
 		{
-			// ... the player is Not Visible
-			isVisible = false;
-			//Debug.Log("Player is NOT VISIBLE");
+			isSeen = false;
 		}
 	}
 
 	// Checks if player is Audible using simple distance calculation
-	public void isPlayerAudible()
+	public void isPlayerHeard()
 	{
 		// If direct distance < 20, then audible
 		if (Vector3.Distance(transform.position, targetObject.position) < hearLength)
 		{
-			// Is Audible
-			isAudible = true;
-			
+			isHeard = true;
 		}
 		else
 		{
-			// Is not Audible
-			isAudible = false;
-			
+			isHeard = false;
 		}
 	}
 
 	// Check is Player is CloseBy based on the NavMesh
 	// Distance to Player via the NavMesh is calculated here
-	// If Distance < 30, then isClose == true
-	public void isPlayerClose()
+	public void isPlayerNear()
 	{
 
 		// Create a path and set it based on a target position.
@@ -246,19 +233,11 @@ public class EnemyAI : MonoBehaviour
 
 		if (pathLength < distLength)
 		{
-
-			Debug.Log("Path Length: " + pathLength);
-
-			// Set Close Bool true
-			isClose = true;
-			
+			isNear = true;
 		}
 		else
 		{
-
-			// Set Close Bool false
-			isClose = false;
-			
+			isNear = false;
 		}
 	}
 

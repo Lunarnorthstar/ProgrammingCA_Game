@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4436302238051286735}
   m_Layer: 0
   m_Name: ProjectileCollider
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4436302238051286729}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4e72981e86dc3f04885e036aafce5db5, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4436302238515986117}
   m_Layer: 0
   m_Name: ProjectileVisual
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 7319712536595981506}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,3 +187,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5218428993a220640b5cca845234676e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifetime: 5
