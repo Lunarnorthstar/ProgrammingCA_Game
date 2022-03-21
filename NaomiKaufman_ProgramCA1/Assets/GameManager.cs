@@ -8,12 +8,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
+    public GameObject playerWaypointPos;
     public UnityEvent<string> addAmmo;
     public UnityEvent<string> addCoins;
+    public UnityEvent<string> addDistance;
 
     private Vector3 startPos;
     private int ammo;
     private int coins;
+    private float distance;
 
     private void Start()
     {
@@ -21,6 +24,12 @@ public class GameManager : MonoBehaviour
         coins = 0;
         UpdateUI();
 
+    }
+
+    private void Update()
+    {
+        distance = Mathf.RoundToInt(Vector3.Distance(playerWaypointPos.transform.position, player.transform.position));
+        UpdateUI();
     }
 
     public void Restart()
@@ -40,10 +49,16 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
+    public void AddDistance()
+    {
+        distance = Mathf.RoundToInt(Vector3.Distance(playerWaypointPos.transform.position, player.transform.position));
+    }
+
     private void UpdateUI()
     {
         addAmmo.Invoke(ammo.ToString());
         addCoins.Invoke(coins.ToString());
+        addDistance.Invoke(distance.ToString());
     }
 
     

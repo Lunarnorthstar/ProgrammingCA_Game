@@ -175,6 +175,22 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MapMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef35d0b6-f2e3-4e41-becb-e2f9433ce609"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""PlayerMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""905e0171-3269-47d7-82b4-c6b5d22e1d5d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -221,6 +237,28 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c403bc77-46c6-4483-8135-da0c9f15840c"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MapMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""820da3dd-8f79-4911-a239-b1d641da8aa0"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -263,6 +301,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_PlayerActions_Pause = m_PlayerActions.FindAction("Pause", throwIfNotFound: true);
         m_PlayerActions_Aim = m_PlayerActions.FindAction("Aim", throwIfNotFound: true);
         m_PlayerActions_Shoot = m_PlayerActions.FindAction("Shoot", throwIfNotFound: true);
+        m_PlayerActions_MapMode = m_PlayerActions.FindAction("MapMode", throwIfNotFound: true);
+        m_PlayerActions_PlayerMode = m_PlayerActions.FindAction("PlayerMode", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_MouseLook = m_Mouse.FindAction("MouseLook", throwIfNotFound: true);
@@ -352,6 +392,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_Pause;
     private readonly InputAction m_PlayerActions_Aim;
     private readonly InputAction m_PlayerActions_Shoot;
+    private readonly InputAction m_PlayerActions_MapMode;
+    private readonly InputAction m_PlayerActions_PlayerMode;
     public struct PlayerActionsActions
     {
         private @PlayerController m_Wrapper;
@@ -360,6 +402,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @Pause => m_Wrapper.m_PlayerActions_Pause;
         public InputAction @Aim => m_Wrapper.m_PlayerActions_Aim;
         public InputAction @Shoot => m_Wrapper.m_PlayerActions_Shoot;
+        public InputAction @MapMode => m_Wrapper.m_PlayerActions_MapMode;
+        public InputAction @PlayerMode => m_Wrapper.m_PlayerActions_PlayerMode;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -381,6 +425,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnShoot;
+                @MapMode.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMapMode;
+                @MapMode.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMapMode;
+                @MapMode.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMapMode;
+                @PlayerMode.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPlayerMode;
+                @PlayerMode.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPlayerMode;
+                @PlayerMode.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPlayerMode;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -397,6 +447,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @MapMode.started += instance.OnMapMode;
+                @MapMode.performed += instance.OnMapMode;
+                @MapMode.canceled += instance.OnMapMode;
+                @PlayerMode.started += instance.OnPlayerMode;
+                @PlayerMode.performed += instance.OnPlayerMode;
+                @PlayerMode.canceled += instance.OnPlayerMode;
             }
         }
     }
@@ -444,6 +500,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnMapMode(InputAction.CallbackContext context);
+        void OnPlayerMode(InputAction.CallbackContext context);
     }
     public interface IMouseActions
     {
