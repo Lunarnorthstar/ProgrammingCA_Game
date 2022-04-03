@@ -30,6 +30,8 @@ public struct EnvironmentData
 
 public class GameManager : MonoBehaviour
 {
+    public GameStatus_SO SOmanager;
+
     public GameObject player;
     public GameObject playerWaypointPos;
     public UnityEvent<string> addAmmo;
@@ -40,8 +42,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent<string> addHighScore;
 
     private Vector3 startPos;
-    private int ammo;
-    private int coins;
+    
     private float distance;
 
     public int currentScore;
@@ -83,9 +84,6 @@ public class GameManager : MonoBehaviour
         LoadGameStatus();
         UpdateSceneFromManager();
 
-        ammo = 10;
-        coins = 0;
-
 
         UpdateUI();
     }
@@ -102,16 +100,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(scene.name);
     }
 
-    public void AddAmmo(int ammoAmt)
-    {
-        ammo += ammoAmt;
-        UpdateUI();
-    }
-    public void AddCoins(int coinAmt)
-    {
-        coins += coinAmt;
-        UpdateUI();
-    }
+    
 
     public void AddDistance()
     {
@@ -136,10 +125,10 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
-        addAmmo.Invoke(ammo.ToString());
-        addCoins.Invoke(coins.ToString());
+        addAmmo.Invoke(SOmanager.ammo.ToString());
+        addCoins.Invoke(SOmanager.coins.ToString());
         addDistance.Invoke(distance.ToString());
         addPoints.Invoke(currentPoints.ToString());
         addLastScore.Invoke(currentScore.ToString());
@@ -251,6 +240,10 @@ public class GameManager : MonoBehaviour
         ResetStatisticStatus();
         dataStatistic.highScore = 0;
         dataStatistic.lastScore = 0;
+
+        SOmanager.coins = 0;
+        SOmanager.ammo = 10;
+        SOmanager.currentCheckpointPos = Vector3.zero;
     }
 
 

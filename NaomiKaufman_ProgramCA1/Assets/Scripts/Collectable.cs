@@ -16,6 +16,8 @@ public class Collectable : MonoBehaviour
     public bool isAmmo; //if its ammo
     public bool isCoin; //if its coins
 
+    public GameStatus_SO SOmanager;
+
     private void OnTriggerEnter(Collider other) //if you enter the trigger
     {
         if (other.gameObject.CompareTag("Player")) //and you are the player
@@ -23,15 +25,17 @@ public class Collectable : MonoBehaviour
             
             if (isAmmo == true) //if ammo is true
             {
-                gameManager.AddAmmo(ammountToGive); //give ammo depending on the ammount variable
+                SOmanager.ammo += ammountToGive; //give ammo depending on the ammount variable
                 Destroy(gameObject); //destroy the collectable
             }
             if (isCoin == true) //if coin is true
             {
                 gameManager.AddPoints(10);
-                gameManager.AddCoins(ammountToGive); //give ammo depending on the ammount variable
+                SOmanager.coins += ammountToGive; //give ammo depending on the ammount variable
                 Destroy(gameObject); //destroy the collectable
             }
+
+            gameManager.UpdateUI();
         }
     }
 

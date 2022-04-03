@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class SlingshotController : MonoBehaviour
 {
+
+    public GameStatus_SO SOmanager;
+
+
     PlayerController playercontrols;
 
      Vector2 movementInput;
@@ -24,6 +28,7 @@ public class SlingshotController : MonoBehaviour
     Transform cameraObject;
     Rigidbody playerRigidbody;
     public InputAction aim;
+
     
 
     private void OnEnable ()
@@ -70,12 +75,13 @@ public class SlingshotController : MonoBehaviour
         transform.rotation = playerRotation;
 
 
-        if (shoot)
+        if (shoot && SOmanager.ammo > 0)
         {
             shoot = false;
             GameObject CreatedProjectile = Instantiate(Projectile, ShotPoint.position, ShotPoint.rotation);
             CreatedProjectile.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
             BlastPower = 5;
+            SOmanager.ammo--;
             GetComponentInParent<Animator>().SetLayerWeight(1, 0);
             GetComponentInParent<Animator>().SetBool("Shooting", false);
 
