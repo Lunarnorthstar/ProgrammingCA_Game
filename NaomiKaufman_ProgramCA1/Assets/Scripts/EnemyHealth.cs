@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int health = 3;
+    public GameManager gm;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -22,6 +23,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else if(health <= 1)
         {
+            gm.currentPoints += 50;
             Destroy(this.gameObject);
         }
     }

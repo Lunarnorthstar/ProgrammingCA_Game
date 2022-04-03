@@ -28,6 +28,7 @@ public class Collectable : MonoBehaviour
             }
             if (isCoin == true) //if coin is true
             {
+                gameManager.AddPoints(10);
                 gameManager.AddCoins(ammountToGive); //give ammo depending on the ammount variable
                 Destroy(gameObject); //destroy the collectable
             }
