@@ -8,6 +8,7 @@ public class GameStatus_SO : ScriptableObject
 {
     public int coins;
     public int ammo;
+    public int health;
 
     public Vector3 currentCheckpointPos;
 

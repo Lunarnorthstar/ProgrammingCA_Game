@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     public int bestScore;
     public int currentPoints;
 
+    public bool paused;
+
     string filePath;
     const string FILE_NAME_GD = "GameDataJSONFORMAT.json";
     const string FILE_NAME_SD = "StatDataJSONFORMAT.json";
@@ -139,11 +141,13 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+        paused = true;
     }
 
     public void UnpauseGame()
     {
         Time.timeScale = 1;
+        paused = false;
     }
 
 
@@ -249,9 +253,9 @@ public class GameManager : MonoBehaviour
 
     // Application Lifecycle Events //
 
-    private void OnApplicationPause(bool pause)
+    private void OnApplicationPause()
     {
-        if(pause)
+        if(paused)
         {
             SaveGameStatus();
         }
@@ -287,6 +291,8 @@ public class GameManager : MonoBehaviour
 
 
         dataEnvironment.currentWaypointPos = GameObject.Find("PlayerWaypoint").transform.position;
+
+        dataEnvironment.pushBlocks.Clear();
         GameObject[] pushObject = GameObject.FindGameObjectsWithTag("PushObject");
         for (int i = 0; i < pushObject.Length; i++)
         {

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+
+    public GameStatus_SO SOmanager;
+
     //Variables
     [Header("Health Values")]
     public int health; //Current health
@@ -21,6 +24,7 @@ public class Health : MonoBehaviour
     private void Start()
     {
         hurtCooldown = 0;
+        health = SOmanager.health;
     }
 
     void Update() //EVery frame
@@ -65,7 +69,7 @@ public class Health : MonoBehaviour
         if (hurtCooldown <= 0)
         {
             health--; //Lower health by 1
-
+            SOmanager.health = health;
             GetComponentInChildren<Animator>().SetTrigger("Hurt");
             hurtCooldown = hurtTimer;
         }
@@ -76,6 +80,6 @@ public class Health : MonoBehaviour
     {
         SendMessage("gotoCP"); //return to Checkpoint
         health = maxHealth; //make the health max again
-
+        SOmanager.health = health;
     }
 }

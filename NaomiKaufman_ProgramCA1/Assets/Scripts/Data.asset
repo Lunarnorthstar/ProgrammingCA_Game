@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Data
   m_EditorClassIdentifier: 
   coins: 0
-  ammo: 8
-  currentCheckpointPos: {x: 0, y: 0, z: 0}
+  ammo: 7
+  health: 3
+  currentCheckpointPos: {x: 0.76358527, y: -0.86470735, z: 2.6956484}

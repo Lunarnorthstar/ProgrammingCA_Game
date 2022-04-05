@@ -7,7 +7,7 @@ public class SlingshotController : MonoBehaviour
 {
 
     public GameStatus_SO SOmanager;
-
+    public GameManager gm;
 
     PlayerController playercontrols;
 
@@ -75,7 +75,7 @@ public class SlingshotController : MonoBehaviour
         transform.rotation = playerRotation;
 
 
-        if (shoot && SOmanager.ammo > 0)
+        if (shoot && SOmanager.ammo > 0 && gm.paused == false)
         {
             shoot = false;
             GameObject CreatedProjectile = Instantiate(Projectile, ShotPoint.position, ShotPoint.rotation);
@@ -96,7 +96,7 @@ public class SlingshotController : MonoBehaviour
 
     void Aim()
     {
-        if(BlastPower < maxBlast)
+        if(BlastPower < maxBlast && gm.paused == false)
         {
             BlastPower += 0.01f;
         }
