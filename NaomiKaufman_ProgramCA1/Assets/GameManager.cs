@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        filePath = Application.persistentDataPath;
+        filePath = Application.dataPath;
         dataStatus = new GameData();
         dataStatistic = new StatisticData();
         dataEnvironment = new EnvironmentData();
@@ -244,7 +244,8 @@ public class GameManager : MonoBehaviour
         ResetStatisticStatus();
         dataStatistic.highScore = 0;
         dataStatistic.lastScore = 0;
-
+        
+        SOmanager.health = 4;
         SOmanager.coins = 0;
         SOmanager.ammo = 10;
         SOmanager.currentCheckpointPos = Vector3.zero;

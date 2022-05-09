@@ -16,9 +16,6 @@ public class EnemyAttack : MonoBehaviour
            
                 other.SendMessage("DealDamage"); //hurt them
                 
-
-
-
             
         }
     }

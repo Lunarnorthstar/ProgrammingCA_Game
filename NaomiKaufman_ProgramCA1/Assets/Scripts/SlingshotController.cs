@@ -79,6 +79,8 @@ public class SlingshotController : MonoBehaviour
         {
             shoot = false;
             GameObject CreatedProjectile = Instantiate(Projectile, ShotPoint.position, ShotPoint.rotation);
+            Rigidbody gameObjectsRigidBody = CreatedProjectile.AddComponent<Rigidbody>(); 
+            gameObjectsRigidBody.mass = 10; 
             CreatedProjectile.GetComponent<Rigidbody>().velocity = ShotPoint.transform.up * BlastPower;
             BlastPower = 5;
             SOmanager.ammo--;
